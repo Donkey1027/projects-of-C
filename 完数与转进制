@@ -1,0 +1,64 @@
+//完数是指一个整数恰好等于它的因子之和（除自身外），则称这个数为完数。
+//从键盘先后输入两个不大于0b11111111的八位二进制正整数m和n，若m>n，则交换两数。
+//然后求m~n（m和n均为正整数且m≤n）之间的所有完数并以十六进制形式输出，两个完数之间换行输出。
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int f1(int two){
+	int i,num,n;
+	int ten = 0;
+	for(i=1;i<9;i++){
+		int num = two / 10;
+		int n = two - num * 10;
+		if(n == 1){
+			ten = ten + pow(2,(i-1));
+		}else{
+			ten = ten;
+		}
+		two = num;
+	} return ten;
+}
+
+int main(void) {
+	//输入两个二进制数 
+	int f1();
+	int x1,x2;
+	scanf("%d\n%d",&x1,&x2);
+	int ten = f1(x1);
+	int ten2 = f1(x2);
+
+	//比较并互换（结果：ten小，ten2大） 
+	if(ten > ten2){
+		int mid;
+		mid = ten;
+		ten = ten2;
+		ten2 = mid;
+		}
+		
+	printf("%d,%d\n",ten,ten2);//检验输出值ten和ten2 
+		
+	//找完数
+	int l,j,times;    //times为计数器 
+	times = 0;
+	for(l=ten;l<=ten2;l++){
+		int sum = 0;
+		for(j=1;j<l;j++){
+			if(l % j == 0){
+				sum = sum + j;	
+		}
+			else{
+				continue;
+				}
+		}
+	if(sum == l){
+		times++;
+		printf("%0X\n",l);
+		}
+	}
+	if(times == 0){
+		printf("NONE");
+	}
+	
+	return 0;
+}

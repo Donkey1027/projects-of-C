@@ -1,0 +1,57 @@
+/建立学生管理系统，定义一个结构体 Student，包含以下成员：
+姓名（字符串）
+学号（整数）
+成绩（浮点数）
+创建一个函数 inputStudent，用于输入三名学生信息（包含姓名、学号、成绩，皆自拟）于该结构体中。
+创建一个函数 displayStudent，用于显示学生信息。
+在 main 函数中，创建一个 Student 类型的变量，调用输入函数和显示函数。
+要求：输入函数可输入三名学生姓名学号以及成绩，主函数内输入学号可显示相应学生姓名学号以及成绩，格式规范，并可全部正确显示，无明显错误/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student{
+		char name[100];
+		int id;
+		float score;
+	}group;
+
+void inputStudent(struct Student group[],int i){
+	printf("请输入第%d位学生的姓名：",i+1);
+	scanf("%s",&group[i].name);
+	printf("请输入第%d位学生的学号：",i+1);
+	scanf("%d",&group[i].id);
+	printf("请输入第%d位学生的成绩：",i+1);
+	scanf("%f",&group[i].score);
+	printf("\n");
+} ;
+
+void displaystudent(struct Student group[],int j,int inputid){
+	printf("请输入要查询的学生学号：");
+	scanf("%d",&inputid);
+	printf("\n学生信息：\n");
+	for(j=0;j<3;j++){
+		if(inputid == group[j].id){
+			printf("姓名：%s\n",group[j].name);
+			printf("学号：%d\n",group[j].id);
+			printf("成绩：%.2f\n\n",group[j].score);
+		}
+	}
+		
+}
+int main(void) {
+	struct Student group[3];   
+	//输入学生信息  
+	int i;   
+	for(i=0;i<3;i++){                          
+		inputStudent(group,i);
+	}
+	
+	//获取目标学号 
+	int inputid,j;
+	
+		displaystudent(group,j,inputid);
+	
+	
+	return 0;
+}
